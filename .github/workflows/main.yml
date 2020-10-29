@@ -21,14 +21,16 @@ jobs:
     steps:
       - name: git clone free5gc
         run: |
+          apt install -y mongodb wget git
+          apt install -y gcc cmake autoconf libtool pkg-config libmnl-dev libyaml-dev
           cd /tmp
           git clone -b master https://github.com/free5gc/free5gc.git
-          cd free5gc
+          cd /tmp/free5gc
           git submodule update --init --recursive
-          cd ..
+          cd /tmp
           git clone -b v0.1.0 https://github.com/PrinzOwO/gtp5g.git 
           
-          cd free5gc
+          cd /tmp/free5gc
           go vet ./src/amf/... 
           go vet ./src/ausf/... 
           go vet ./src/nrf/... 
@@ -39,6 +41,42 @@ jobs:
           go vet ./src/udr/... 
           go vet ./src/n3iwf/... 
           go vet ./src/upf/... 
+          
+          cd /tmp/gtp5g
+          make
+          make uninstall || true
+          make install 
+          
+          cd /tmp/free5gc
+          go build -o bin/amf -x src/amf/amf.go
+          go build -o bin/ausf -x src/ausf/ausf.go
+          go build -o bin/nrf -x src/nrf/nrf.go
+          go build -o bin/nssf -x src/nssf/nssf.go
+          go build -o bin/pcf -x src/pcf/pcf.go
+          go build -o bin/smf -x src/smf/smf.go
+          go build -o bin/udm -x src/udm/udm.go
+          go build -o bin/udr -x src/udr/udr.go 
+          go build -o bin/n3iwf -x src/n3iwf/n3iwf.go
+          
+          cd /tmp/free5gc/src/upf
+          rm -rf build 
+          mkdir -p build 
+          cd ./build 
+          cmake .. 
+          make 
+          
+          cd /tmp/free5gc
+          ./test.sh TestRegistration
+          ./test.sh TestGUTIRegistration 
+          ./test.sh TestServiceRequest 
+          ./test.sh TestXnHandover
+          ./test.sh TestDeregistration
+          ./test.sh TestPDUSessionReleaseRequest
+          ./test.sh TestPaging
+          ./test.sh TestReSynchronisation
+          
+          rm -rf testkeylog/  
+          
         
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
 #      - name: Check out free5gc 
