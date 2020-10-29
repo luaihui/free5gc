@@ -31,4 +31,3 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
-          echo This is the test GitHub actions for FUJITSU 'free5gc' project.
