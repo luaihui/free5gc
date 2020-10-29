@@ -21,10 +21,6 @@ jobs:
     steps:
       - name: git clone free5gc
         run: |
-          sudo -E apt-get purge mongodb-org*
-          sudo -E apt-get install mongodb
-          sudo -E apt-get update
-          mongo --version
           sudo -E apt-get install -y wget git
           sudo -E apt-get install -y gcc cmake autoconf libtool pkg-config libmnl-dev libyaml-dev
           cd /tmp
