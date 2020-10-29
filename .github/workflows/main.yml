@@ -27,8 +27,7 @@ jobs:
           git submodule update --init --recursive
           cd ..
           git clone -b v0.1.0 https://github.com/PrinzOwO/gtp5g.git 
-      - name: static code check
-        run: |
+          
           cd free5gc
           go vet ./src/amf/... 
           go vet ./src/ausf/... 
