@@ -21,61 +21,133 @@ jobs:
     steps:
       - name: git clone free5gc
         run: |
-          sudo -E apt-get install -y wget git
-          sudo -E apt-get install -y gcc cmake autoconf libtool pkg-config libmnl-dev libyaml-dev
+          echo "Step1: Check Out"
+          echo "$"
+          echo "$cd /tmp"
           cd /tmp
+          echo "$git clone -b master https://github.com/free5gc/free5gc.git"
           git clone -b master https://github.com/free5gc/free5gc.git
+          echo "$cd /tmp/free5gc"
           cd /tmp/free5gc
+          echo "$git submodule update --init --recursive"
           git submodule update --init --recursive
+          echo "$cd /tmp"
           cd /tmp
+          echo "git clone -b v0.1.0 https://github.com/PrinzOwO/gtp5g.git"
           git clone -b v0.1.0 https://github.com/PrinzOwO/gtp5g.git 
           
+          echo "$"
+          echo "Step2: SourceCode Static Check"
+          echo "$"
+          echo "$cd /tmp/free5gc"
           cd /tmp/free5gc
-          go vet ./src/amf/... 
-          go vet ./src/ausf/... 
-          go vet ./src/nrf/... 
-          go vet ./src/nssf/... 
+          echo "$go vet ./src/amf/..."
+          go vet ./src/amf/...
+          echo "$go vet ./src/ausf/..." 
+          go vet ./src/ausf/...
+          echo "$go vet ./src/nrf/..." 
+          go vet ./src/nrf/...
+          echo "$go vet ./src/nssf/..."  
+          go vet ./src/nssf/...
+          echo "$go vet ./src/pcf/..."  
           go vet ./src/pcf/... 
-          go vet ./src/smf/... 
-          go vet ./src/udm/... 
-          go vet ./src/udr/... 
-          go vet ./src/n3iwf/... 
+          echo "$go vet ./src/smf/..." 
+          go vet ./src/smf/...
+          echo "$go vet ./src/udm/..."  
+          go vet ./src/udm/...
+          echo "$go vet ./src/udr/..." 
+          go vet ./src/udr/...
+          echo "$go vet ./src/n3iwf/..." 
+          go vet ./src/n3iwf/...
+          echo "$go vet ./src/upf/..." 
           go vet ./src/upf/... 
           
+          echo "$"
+          echo "Step3: Build"
+          echo "$"
+          echo "Step3.1: Install some packages"
+          echo "$"
+          echo "$sudo -E apt-get install -y wget git"
+          sudo -E apt-get install -y wget git
+          echo "$sudo -E apt-get install -y gcc cmake autoconf libtool pkg-config libmnl-dev libyaml-dev"
+          sudo -E apt-get install -y gcc cmake autoconf libtool pkg-config libmnl-dev libyaml-dev
+          echo "$" 
+          echo "Step3.2: Build gtp5g"
+          echo "$"
+          echo "$cd /tmp/gtp5g" 
           cd /tmp/gtp5g
+          echo "$make" 
           make
-          sudo -E make uninstall || true
+          echo "$sudo -E make install" 
           sudo -E make install 
           
+          echo "$" 
+          echo "$Step3.3: Build free5gc components"
+          echo "$"
+          echo "$cd /tmp/free5gc" 
           cd /tmp/free5gc
+          echo "$go build -o bin/amf -x src/amf/amf.go" 
           go build -o bin/amf -x src/amf/amf.go
+          echo "$go build -o bin/ausf -x src/ausf/ausf.go" 
           go build -o bin/ausf -x src/ausf/ausf.go
+          echo "$go build -o bin/nrf -x src/nrf/nrf.go" 
           go build -o bin/nrf -x src/nrf/nrf.go
+          echo "$go build -o bin/nssf -x src/nssf/nssf.go" 
           go build -o bin/nssf -x src/nssf/nssf.go
+          echo "$go build -o bin/pcf -x src/pcf/pcf.go" 
           go build -o bin/pcf -x src/pcf/pcf.go
+          echo "$go build -o bin/smf -x src/smf/smf.go" 
           go build -o bin/smf -x src/smf/smf.go
+          echo "$go build -o bin/udm -x src/udm/udm.go" 
           go build -o bin/udm -x src/udm/udm.go
+          echo "$go build -o bin/udr -x src/udr/udr.go" 
           go build -o bin/udr -x src/udr/udr.go 
+          echo "$go build -o bin/n3iwf -x src/n3iwf/n3iwf.go" 
           go build -o bin/n3iwf -x src/n3iwf/n3iwf.go
           
+          echo "$"
+          echo "$Step3.3: Build free5gc upf"
+          echo "$"
+          echo "$cd /tmp/free5gc/src/upf"
           cd /tmp/free5gc/src/upf
-          rm -rf build 
+          echo "$rm -rf build"
+          rm -rf build
+          echo "$mkdir -p build" 
           mkdir -p build 
-          cd ./build 
+          echo "$cd ./build" 
+          cd ./build
+          echo "$cmake .."  
           cmake .. 
+          echo "$make"  
           make 
           
+          echo "$"
+          echo "Step4: Test"
+          echo "$"
+          echo "$cd /tmp/free5gc"
           cd /tmp/free5gc
+          echo "$sudo -E ./test.sh TestRegistration"
           sudo -E ./test.sh TestRegistration
-          sudo -E ./test.sh TestGUTIRegistration 
+          echo "$sudo -E ./test.sh TestGUTIRegistration"
+          sudo -E ./test.sh TestGUTIRegistration
+          echo "$sudo -E ./test.sh TestServiceRequest" 
           sudo -E ./test.sh TestServiceRequest 
+          echo "$sudo -E ./test.sh TestXnHandover" 
           sudo -E ./test.sh TestXnHandover
+          echo "$sudo -E ./test.sh TestDeregistration" 
           sudo -E ./test.sh TestDeregistration
+          echo "$sudo -E./test.sh TestPDUSessionReleaseRequest" 
           sudo -E./test.sh TestPDUSessionReleaseRequest
+          echo "$sudo -E ./test.sh TestPaging" 
           sudo -E ./test.sh TestPaging
+          echo "$sudo -E ./test.sh TestReSynchronisation" 
           sudo -E ./test.sh TestReSynchronisation
           
-          rm -rf testkeylog/  
+          echo "$rm -rf testkeylog/" 
+          rm -rf testkeylog/
+          
+          echo "$" 
+          echo "Completed!!!" 
           
         
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
