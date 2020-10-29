@@ -21,8 +21,8 @@ jobs:
     steps:
       - name: git clone free5gc
         run: |
-          apt install -y mongodb wget git
-          apt install -y gcc cmake autoconf libtool pkg-config libmnl-dev libyaml-dev
+          sudo -E apt install -y mongodb wget git
+          sudo -E apt install -y gcc cmake autoconf libtool pkg-config libmnl-dev libyaml-dev
           cd /tmp
           git clone -b master https://github.com/free5gc/free5gc.git
           cd /tmp/free5gc
