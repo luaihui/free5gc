@@ -126,6 +126,8 @@ jobs:
           echo "$"
           echo "$ cd /tmp/free5gc"
           cd /tmp/free5gc
+          echo "$ chmod +x test.sh"
+          chmod +x test.sh
           echo "$ sudo -E ./test.sh TestRegistration"
           sudo -E ./test.sh TestRegistration
           echo "$ sudo -E ./test.sh TestGUTIRegistration"
