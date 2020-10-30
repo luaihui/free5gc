@@ -39,12 +39,12 @@ jobs:
           source ~/.bashrc
 
           echo "####### Try to install mongodb #######"
-          echo "$ sudo -E apt -y update"
-          sudo -E apt -y update
+          echo "$ sudo -E apt-get -y update"
+          sudo -E apt-get -y update
           echo "$ sudo -E apt-get install libcurl4 openss"
           sudo -E apt-get install libcurl4 openssl
-          echo "$ sudo -E apt -y install mongodb"
-          sudo -E apt -y install mongodb
+          echo "$ sudo -E apt-get -y install mongodb"
+          sudo -E apt-get -y install mongodb
           
           echo "Step1: Check Out"
           echo "$"
