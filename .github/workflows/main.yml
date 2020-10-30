@@ -145,8 +145,8 @@ jobs:
           cd ./build
           echo "$ cmake .."  
           cmake .. 
-          echo "$ make"  
-          make 
+          echo "$ make -jnproc"  
+          make -jnproc
           
           echo "$"
           echo "Step4: Test"
@@ -155,22 +155,22 @@ jobs:
           cd /tmp/free5gc
           echo "$ chmod +x ./test.sh"
           chmod +x ./test.sh
-          echo "$ sudo -E ./test.sh TestRegistration"
-          sudo -E ./test.sh TestRegistration
-          echo "$ sudo -E ./test.sh TestGUTIRegistration"
-          sudo -E ./test.sh TestGUTIRegistration
-          echo "$ sudo -E ./test.sh TestServiceRequest" 
-          sudo -E ./test.sh TestServiceRequest 
-          echo "$ sudo -E ./test.sh TestXnHandover" 
-          sudo -E ./test.sh TestXnHandover
-          echo "$ sudo -E ./test.sh TestDeregistration" 
-          sudo -E ./test.sh TestDeregistration
-          echo "$ sudo -E./test.sh TestPDUSessionReleaseRequest" 
-          sudo -E./test.sh TestPDUSessionReleaseRequest
-          echo "$ sudo -E ./test.sh TestPaging" 
-          sudo -E ./test.sh TestPaging
-          echo "$ sudo -E ./test.sh TestReSynchronisation" 
-          sudo -E ./test.sh TestReSynchronisation
+          echo "$ sudo ./test.sh TestRegistration"
+          sudo ./test.sh TestRegistration
+          echo "$ sudo ./test.sh TestGUTIRegistration"
+          sudo ./test.sh TestGUTIRegistration
+          echo "$ sudo ./test.sh TestServiceRequest" 
+          sudo ./test.sh TestServiceRequest 
+          echo "$ sudo ./test.sh TestXnHandover" 
+          sudo ./test.sh TestXnHandover
+          echo "$ sudo ./test.sh TestDeregistration" 
+          sudo ./test.sh TestDeregistration
+          echo "$ sudo ./test.sh TestPDUSessionReleaseRequest" 
+          sudo ./test.sh TestPDUSessionReleaseRequest
+          echo "$ sudo ./test.sh TestPaging" 
+          sudo ./test.sh TestPaging
+          echo "$ sudo ./test.sh TestReSynchronisation" 
+          sudo ./test.sh TestReSynchronisation
           
           echo "$ rm -rf testkeylog/" 
           rm -rf testkeylog/
