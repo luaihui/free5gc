@@ -41,8 +41,6 @@ jobs:
           echo "####### Try to install mongodb #######"
           echo "$ sudo apt -y update"
           sudo apt -y update
-          echo "$ sudo -E apt -y install mongodb wget git"
-          sudo -E apt -y install mongodb wget git
           echo "$ sudo systemctl start mongodb"
           sudo systemctl start mongodb
           
