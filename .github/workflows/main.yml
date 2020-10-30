@@ -19,11 +19,11 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: git clone free5gc + static code check + build + test 
+      - name: free5gc checkout + static code check + build + test 
         run: |
           echo "$ uname -r"
           uname -r
-          echo "# Step0: Remove Old GO Language Packages"
+          echo "# Step0: Remove Old go Language Packages And Install go1.14.4 "
           echo "# sudo rm -rf /usr/local/go"
           sudo rm -rf /usr/local/go
           echo "# wget https://dl.google.com/go/go1.14.4.linux-amd64.tar.gz"
@@ -38,7 +38,7 @@ jobs:
           echo 'export PATH=$PATH:$GOPATH/bin:$GOROOT/bin' >> ~/.bashrc
           source ~/.bashrc
 
-          echo "####### Try to install mongodb #######"
+          echo "####### Try to Remove mongodb-org And Install mongodb #######"
           echo "$ sudo -E apt-get -y update"
           sudo -E apt-get -y update
           echo "$ sudo -E apt-get install libcurl4 openss"
@@ -145,8 +145,8 @@ jobs:
           cd ./build
           echo "$ cmake .."  
           cmake .. 
-          echo "$ make -j`nproc`"  
-          make -j`nproc`
+          echo "$ make"  
+          make
           
           echo "$"
           echo "Step4: Test"
@@ -172,8 +172,8 @@ jobs:
           echo "$ sudo ./test.sh TestReSynchronisation" 
           sudo ./test.sh TestReSynchronisation
           
-          echo "$ rm -rf testkeylog/" 
-          rm -rf testkeylog/
+          echo "$ sudo rm -rf testkeylog/" 
+          sudo rm -rf testkeylog/
           
           echo "$" 
           echo "Completed!!!" 
