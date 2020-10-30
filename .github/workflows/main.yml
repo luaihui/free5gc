@@ -176,9 +176,6 @@ jobs:
           sudo ./test.sh TestN2Handover
           echo "$ sudo ./test.sh TestNon3GPP" 
           sudo ./test.sh TestNon3GPP
-                   
-          echo "$ sudo rm -rf testkeylog/" 
-          sudo rm -rf testkeylog/
           
           echo "$" 
           echo "Completed!!!" 
