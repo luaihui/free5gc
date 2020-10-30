@@ -43,9 +43,11 @@ jobs:
           sudo -E apt-get -y update
           echo "$ sudo -E apt-get install libcurl4 openss"
           sudo -E apt-get install libcurl4 openssl
-          echo "$ sudo systemctl status mongodb"
-          sudo systemctl status mongodb
-
+          echo "$ sudo -E apt-get -y remove mongodb*"
+          sudo -E apt-get -y remove mongodb*
+           echo "$ sudo -E apt-get -y install mongodb"
+          sudo -E apt-get -y install mongodb         
+          
           echo "Step1: Check Out"
           echo "$"
           echo "$ cd /tmp"
