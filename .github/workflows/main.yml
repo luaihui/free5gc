@@ -60,8 +60,8 @@ jobs:
           git submodule update --init --recursive
           echo "$ cd /tmp"
           cd /tmp
-          echo "$ git clone -b v0.1.0 https://github.com/PrinzOwO/gtp5g.git"
-          git clone -b v0.1.0 https://github.com/PrinzOwO/gtp5g.git 
+          echo "$ git clone -b v0.2.0 https://github.com/PrinzOwO/gtp5g.git"
+          git clone -b v0.2.0 https://github.com/PrinzOwO/gtp5g.git 
           
           echo "$"
           echo "Step2: SourceCode Static Check"
