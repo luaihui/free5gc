@@ -21,6 +21,33 @@ jobs:
     steps:
       - name: git clone free5gc
         run: |
+          echo "$ uname -r"
+          uname -r
+          echo "# Step0: Remove Old GO Language Packages"
+          echo "# sudo rm -rf /usr/local/go"
+          sudo rm -rf /usr/local/go
+          echo "# wget https://dl.google.com/go/go1.14.4.linux-amd64.tar.gz"
+          wget https://dl.google.com/go/go1.14.4.linux-amd64.tar.gz
+          echo "# sudo tar -C /usr/local -zxvf go1.14.4.linux-amd64.tar.gz"
+          sudo tar -C /usr/local -zxvf go1.14.4.linux-amd64.tar.gz
+          
+          echo "# mkdir -p ~/go/{bin,pkg,src}"
+          mkdir -p ~/go/{bin,pkg,src}
+          echo 'export GOPATH=$HOME/go' >> ~/.bashrc
+          echo 'export GOROOT=/usr/local/go' >> ~/.bashrc
+          echo 'export PATH=$PATH:$GOPATH/bin:$GOROOT/bin' >> ~/.bashrc
+          source ~/.bashrc
+          
+          echo "####### Try to install mongodb #######"
+          echo "$ sudo apt -y update"
+          sudo apt -y update
+          echo "$ sudo apt -y install mongodb wget git"
+          sudo apt -y install mongodb wget git
+          echo "$ sudo systemctl start mongodb"
+          sudo systemctl start mongodb
+          
+          
+          
           echo "Step1: Check Out"
           echo "$"
           echo "$ cd /tmp"
@@ -126,8 +153,8 @@ jobs:
           echo "$"
           echo "$ cd /tmp/free5gc"
           cd /tmp/free5gc
-          echo "$ chmod +x test.sh"
-          chmod +x test.sh
+          echo "$ chmod +x ./test.sh"
+          chmod +x ./test.sh
           echo "$ sudo -E ./test.sh TestRegistration"
           sudo -E ./test.sh TestRegistration
           echo "$ sudo -E ./test.sh TestGUTIRegistration"
