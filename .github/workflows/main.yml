@@ -19,7 +19,7 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: git clone free5gc
+      - name: git clone free5gc + static code check + build + test 
         run: |
           echo "$ uname -r"
           uname -r
@@ -145,8 +145,8 @@ jobs:
           cd ./build
           echo "$ cmake .."  
           cmake .. 
-          echo "$ make -jnproc"  
-          make -jnproc
+          echo "$ make -j`nproc`"  
+          make -j`nproc`
           
           echo "$"
           echo "Step4: Test"
