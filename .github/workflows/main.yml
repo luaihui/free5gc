@@ -26,10 +26,10 @@ jobs:
           echo "# Step0: Remove Old go Language Packages And Install go1.14.4 "
           echo "# sudo rm -rf /usr/local/go"
           sudo rm -rf /usr/local/go
-          echo "# wget https://dl.google.com/go/go1.14.4.linux-amd64.tar.gz"
-          wget https://dl.google.com/go/go1.14.4.linux-amd64.tar.gz
-          echo "# sudo tar -C /usr/local -zxvf go1.14.4.linux-amd64.tar.gz"
-          sudo tar -C /usr/local -zxvf go1.14.4.linux-amd64.tar.gz
+          echo "# wget https://dl.google.com/go/go1.14.10.linux-amd64.tar.gz"
+          wget https://dl.google.com/go/go1.14.10.linux-amd64.tar.gz
+          echo "# sudo tar -C /usr/local -zxvf go1.14.10.linux-amd64.tar.gz"
+          sudo tar -C /usr/local -zxvf go1.14.10.linux-amd64.tar.gz
           
           echo "# mkdir -p ~/go/{bin,pkg,src}"
           mkdir -p ~/go/{bin,pkg,src}
