@@ -38,8 +38,6 @@ jobs:
           echo "$ git clone -b v0.2.0 https://github.com/PrinzOwO/gtp5g.git"
           git clone -b v0.2.0 https://github.com/PrinzOwO/gtp5g.git 
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
       - name: free5gc Static Code Check
         run: |
           echo "$"
@@ -68,8 +66,6 @@ jobs:
           echo "$ go vet ./src/upf/..."
           go vet ./src/upf/...
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
       - name: free5gc Build
         run: |
           echo "$"
@@ -152,8 +148,6 @@ jobs:
           echo "$ make"
           make
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
       - name: free5gc Test
         run: | 
           echo "$"
