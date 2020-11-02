@@ -39,7 +39,7 @@ jobs:
           cd /tmp
           echo "$ git clone -b v0.2.0 https://github.com/PrinzOwO/gtp5g.git"
           git clone -b v0.2.0 https://github.com/PrinzOwO/gtp5g.git 
-    steps:
+
       - name: Static Code Check
         continue-on-error: true
         run: |
@@ -68,7 +68,7 @@ jobs:
           go vet ./src/n3iwf/...
           echo "$ go vet ./src/upf/..."
           go vet ./src/upf/...
-    steps:
+
       - name: Build
         continue-on-error: true
         run: |
@@ -151,7 +151,7 @@ jobs:
           cmake .. 
           echo "$ make"
           make
-    steps:
+
       - name: Test
         continue-on-error: true
         run: | 
